@@ -22,6 +22,7 @@ body {
   font-size: 18px;
   font-weight: 300;
   line-height: 1.5em;
+  overflow-x: hidden;
 }
 
 a {
@@ -1259,7 +1260,7 @@ main .page-content img {
 /*quote section*/
 .candidate-quote {
     background-color: #f8f9fa;
-    padding: 80px 0;
+    padding: 0;
     position: relative;
     overflow: hidden;
 }
@@ -1670,25 +1671,27 @@ footer img {
 
 /* Tablet Breakpoint */
 /* Desktop Breakpoint */
-.hero {
-    min-height: 100vh;
-    background-image :url(../img/feu.jpg);
-    background-size: cover;
-    
-    background-repeat: no-repeat;
-}
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(21, 21, 21, 0.7);
-    z-index: 1;
-    height: auto;
+.hero{
+  background-color: fff;
 }
 
+.hero .main {
+  min-height: 100vh;
+  background-image :url(../img/feu.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero .main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(21, 21, 21, 0.7);
+  z-index: -1;
+  height: auto;
+}
 .hero .row {
     position: relative;
     z-index: 2;
@@ -1759,7 +1762,8 @@ footer img {
     }
     .hero .leftside{
       text-align: center;
-    }
+      margin-top: 20%;
+  }
     .hero h1 {
       font-size: 40px;
       line-height: 80%;
@@ -1782,23 +1786,30 @@ footer img {
         align-items: center;
     }
     .hero .hero-img{
-      width: 30%;
-      height: 30%;
-      position: relative;
-      margin: 50px auto;
-      border-radius: 50%;
+      margin-left: -30px;
+      width: 110%;
     }
     .hero svg {
         display: none;
     }
   }
   @media  screen and (max-width: 650px) {
-    .hero .hero-img{
-        width: 200px;
-        height: 200px;
-        border-radius: 10%;
-      }
-
+    .hero .leftside {
+      scale: 0.8;
+    }
+    .hero .social-top {
+      padding-top: 30px;
+      padding-bottom: 100px;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+      background-color: #2222227d; 
+    }
+    nav .links a {
+      color: #c8032c !important;
+    }
+    .hero .main .hero-img {
+      margin-top: -50px;
+    }
 }
 /* Default Page View */
 .page-banner {
