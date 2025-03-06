@@ -1675,7 +1675,7 @@ footer img {
   background-color: fff;
 }
 
-.hero .main {
+/* .hero .main {
   min-height: 100vh;
   background-image :url(../img/feu.jpg);
   background-size: cover;
@@ -1691,7 +1691,20 @@ footer img {
   background-color: rgba(21, 21, 21, 0.7);
   z-index: -1;
   height: auto;
+} */
+
+/* Full-width overlay canvas */
+#overlayCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  z-index: -10; /* Above other elements */
+  pointer-events: none; /* Prevent interaction */
 }
+
+
 .hero .row {
     position: relative;
     z-index: 2;
@@ -1795,10 +1808,11 @@ footer img {
   }
   @media  screen and (max-width: 650px) {
     .hero .leftside {
-      scale: 0.8;
+      scale: 1;
     }
     .hero .social-top {
-      padding-top: 30px;
+      margin-top: 20px;
+      padding-top: 20px;
       padding-bottom: 100px;
       clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
@@ -1808,7 +1822,17 @@ footer img {
       color: #c8032c !important;
     }
     .hero .main .hero-img {
-      margin-top: -50px;
+      margin-top: -150px;
+    }
+    .hero .main .social-top{
+      
+    }
+    .hero .main .social-top .intro-txt {
+      font-size: 25px;
+    }
+    .hero .main .social-top .text-dark {
+      color: #FFF !important;
+      
     }
 }
 /* Default Page View */

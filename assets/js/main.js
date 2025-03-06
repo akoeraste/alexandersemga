@@ -84,3 +84,102 @@ function onSubmit(token) {
 }
 //Get current year
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+/// Canvas setup
+const canvas = document.getElementById('overlayCanvas');
+const ctx = canvas.getContext('2d');
+
+function setCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+setCanvasSize(); // Initial canvas size setup
+
+// Draw the desktop version (original design)
+function drawDesktopVersion() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Orange shape from center to right
+    ctx.fillStyle = '#c8032c';
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(canvas.width, centerY - 400);
+    ctx.lineTo(canvas.width, canvas.height);
+    ctx.lineTo(centerX, canvas.height);
+    ctx.closePath();
+    ctx.fill();
+
+    // Bubbles
+    drawBigBubbles();
+
+    // Triangle
+    drawTriangle();
+}
+
+// Draw the mobile version (semicircle from bottom upwards)
+function drawMobileVersion() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height; // Start from the bottom
+    const radius = Math.min(canvas.width, canvas.height) / 2;
+
+    // Orange semicircle
+    ctx.fillStyle = '#c8032c';
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, Math.PI, 0, false); // Semicircle upwards
+    ctx.lineTo(centerX + radius, canvas.height); // Complete the shape
+    ctx.lineTo(centerX - radius, canvas.height); // Complete the shape
+    ctx.closePath();
+    ctx.fill();
+
+    // Bubbles
+    drawBubbles();
+
+    // Triangle
+    drawTriangle();
+}
+
+// Draw small bubbles on the screen
+function drawBubbles() {
+    for (let i = 0; i < 10; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = Math.random() * 10 + 5;
+
+        ctx.fillStyle = 'orange';
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function drawBigBubbles() {
+    for (let i = 0; i < 20; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = Math.random() * 10 + 5;
+
+        ctx.fillStyle = 'orange';
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Render based on screen size
+function renderCanvas() {
+    setCanvasSize(); // Adjust size dynamically
+
+    if (window.innerWidth <= 500) {
+        drawMobileVersion(); // Mobile view
+    } else {
+        drawDesktopVersion(); // Desktop view
+    }
+}
+
+// Adjust on resize
+window.addEventListener('resize', renderCanvas);
+
+// Initial render
+renderCanvas();
